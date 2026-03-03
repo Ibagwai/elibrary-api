@@ -1,0 +1,28 @@
+╔══════════════════════════════════════════════════════════════╗
+║         K7 E-Library API - Swagger Documentation            ║
+╚══════════════════════════════════════════════════════════════╝
+
+📚 ACCESS SWAGGER UI:
+   http://localhost:8747/api/documentation
+
+🔑 AUTHENTICATION:
+   1. Login at: POST /api/v1/auth/login
+   2. Copy token from response
+   3. Click "Authorize" button
+   4. Enter: Bearer YOUR_TOKEN_HERE
+
+📊 ENDPOINTS DOCUMENTED: 16
+   ✓ Authentication (4)
+   ✓ Content (3)
+   ✓ Search (1)
+   ✓ Bookmarks (3)
+   ✓ Media (2)
+   ✓ Admin (5)
+
+🔄 REGENERATE DOCS:
+   php artisan l5-swagger:generate
+
+📖 FULL GUIDE:
+   See API_DOCUMENTATION.md
+
+✅ STATUS: Ready to use!
