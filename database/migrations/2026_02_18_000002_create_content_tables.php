@@ -150,7 +150,7 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('content_item_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('content_item_id')->constrained()->onDelete('cascade');
             $table->tinyInteger('rating')->unsigned();
             $table->text('review_text')->nullable();
             $table->boolean('is_approved')->default(false);
