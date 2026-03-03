@@ -102,13 +102,15 @@ if (is_writable($cachePath)) {
 // Step 7: Run migrations
 echo "7. Running database migrations... ";
 chdir($baseDir);
-exec('php artisan migrate --seed --force 2>&1', $output, $return);
+exec('php artisan migrate:fresh --seed --force 2>&1', $output, $return);
 if ($return === 0) {
     echo "✅ SUCCESS\n";
     echo "   Default users created:\n";
-    echo "   - admin@k7library.com / password\n";
-    echo "   - faculty@k7library.com / password\n";
-    echo "   - student@k7library.com / password\n";
+    echo "   - Admin: admin@k7library.com / password\n";
+    echo "   - Faculty: faculty@k7library.com / password\n";
+    echo "   - Student: student@k7library.com / password\n";
+    echo "   - Librarian: librarian@k7library.com / password\n";
+    echo "   - Guest: guest@k7library.com / password\n";
 } else {
     echo "❌ FAILED\n";
     echo "   Error: " . implode("\n   ", $output) . "\n";

@@ -18,6 +18,15 @@ use App\Http\Controllers\API\V1\Admin\{
     BulkUploadController
 };
 
+// Health check
+Route::get('/health', function () {
+    return response()->json([
+        'status' => 'ok',
+        'timestamp' => now()->toIso8601String(),
+        'service' => 'K7 E-Library API'
+    ]);
+});
+
 // Public routes
 Route::prefix('v1')->group(function () {
     // Auth
