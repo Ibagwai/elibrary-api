@@ -10,12 +10,9 @@
 
 ## Step 1: Prepare Database
 
-1. Login to cPanel
-2. Go to "MySQL Databases"
-3. Create new database: `msit_elibrary`
-4. Create new user: `msit_elib_user`
-5. Add user to database with ALL PRIVILEGES
-6. Note down: database name, username, password
+**Using SQLite** - No database setup required! The database file will be created automatically.
+
+Skip to Step 2.
 
 ---
 
@@ -62,13 +59,11 @@ Update these values in `.env`:
 ```env
 APP_URL=https://library.msit.com.ng
 
-DB_DATABASE=msit_elibrary
-DB_USERNAME=msit_elib_user
-DB_PASSWORD=your_password_here
-
 SANCTUM_STATEFUL_DOMAINS=your-vercel-app.vercel.app
 CORS_ALLOWED_ORIGINS=https://your-vercel-app.vercel.app
 ```
+
+**Note:** Database is SQLite - no credentials needed!
 
 Generate app key:
 ```bash
@@ -77,9 +72,13 @@ php artisan key:generate
 
 ---
 
-## Step 5: Run Migrations
+## Step 5: Create Database & Run Migrations
 
 ```bash
+# Create SQLite database file
+touch database/database.sqlite
+
+# Run migrations
 php artisan migrate --seed --force
 ```
 
@@ -167,9 +166,9 @@ php artisan config:cache
 - Check error logs in cPanel
 
 ### Database Connection Error
-- Verify database credentials in `.env`
-- Ensure database user has privileges
-- Check DB_HOST (usually `localhost`)
+- SQLite database file should be at `database/database.sqlite`
+- Check file permissions: `chmod 664 database/database.sqlite`
+- Check DB_CONNECTION=sqlite in `.env`
 
 ### CORS Error
 - Update `CORS_ALLOWED_ORIGINS` in `.env`
@@ -206,11 +205,11 @@ php artisan config:cache
 ## Security Checklist
 
 - ✅ APP_DEBUG=false in production
-- ✅ Strong database password
 - ✅ APP_KEY generated
 - ✅ HTTPS enabled
 - ✅ storage/ not publicly accessible
 - ✅ .env not publicly accessible
+- ✅ database/database.sqlite not publicly accessible
 
 ---
 
